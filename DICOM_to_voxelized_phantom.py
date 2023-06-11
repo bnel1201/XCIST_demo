@@ -31,18 +31,16 @@
 
 from pathlib import Path
 import os
+from argparse import ArgumentParser
 import numpy as np
 import re
 import pydicom
 import copy
 import json
 import matplotlib.pyplot as plt
-from catsim  import GetMu
-from catsim import source_cfg
-import argparse
+from catsim.pyfiles  import GetMu
+from catsim.pyfiles.CommonTools import source_cfg
 
-import sys
-sys.path.extend(['~/Dev/DLIR_Ped_Generalizability/xcist/catsim/material'])
 
 class IndexTracker:
     # Tracker for allowing scroll wheel to move through a large number of images
@@ -467,11 +465,13 @@ def DICOM_to_voxelized_phantom(phantom):
 
 if __name__ == "__main__":
 
-    # read in config file
-    parser = argparse.ArgumentParser()
-    parser.add_argument('cfg')
+    parser = argparse.ArgumentParser(
+                    prog='Dicom to Voxelized Phantom for XCIST',
+                    description='Converts noise free dicoms to XCIST based on a provided config file')
+    parser.add_argument('filename')
     args = parser.parse_args()
-    config = source_cfg(args.cfg)
+    # read in config file
+    config = source_cfg(args.fi)
 
     # When integrating into CatSim the location of the phantom file needs to be passed with the call statement
     DICOM_to_voxelized_phantom(config.phantom)
