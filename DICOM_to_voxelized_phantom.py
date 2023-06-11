@@ -471,7 +471,7 @@ if __name__ == "__main__":
     parser.add_argument('filename')
     args = parser.parse_args()
     # read in config file
-    config = source_cfg(args.fi)
+    config = source_cfg(args.filename)
 
     # When integrating into CatSim the location of the phantom file needs to be passed with the call statement
     DICOM_to_voxelized_phantom(config.phantom)
