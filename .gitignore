@@ -1,0 +1,9 @@
+*.dcm
+*.prep
+*.scan
+*.offset
+*.air
+XCIST
+*/.ipynb_checkpoints
+.ipynb_checkpoints
+example_body
