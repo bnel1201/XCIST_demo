@@ -465,7 +465,7 @@ def DICOM_to_voxelized_phantom(phantom):
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
                     prog='Dicom to Voxelized Phantom for XCIST',
                     description='Converts noise free dicoms to XCIST based on a provided config file')
     parser.add_argument('filename')
