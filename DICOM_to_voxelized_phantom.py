@@ -38,8 +38,8 @@ import pydicom
 import copy
 import json
 import matplotlib.pyplot as plt
-from catsim.pyfiles  import GetMu
-from catsim.pyfiles.CommonTools import source_cfg
+from catsim import GetMu
+from catsim import source_cfg
 
 
 class IndexTracker:
