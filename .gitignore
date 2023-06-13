@@ -10,3 +10,8 @@ example_body
 pediatric_phantom_data
 Gate_data
 cfg
+convertRaw.py
+dicom_to_voxelized.cfg
+*.json
+sitk2vtk.py
+*.pyc
