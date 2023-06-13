@@ -32,7 +32,7 @@ tomography_backend="tomopy"
 # from skimage.transform import iradon
 # from skimage.transform import radon
 
-# from gvxrPython3 import gvxr # Simulate X-ray images
+from gvxrPython3 import gvxr # Simulate X-ray images
 
 def printSystemInfo():
     print("OS:")

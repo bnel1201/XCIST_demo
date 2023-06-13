@@ -7,3 +7,6 @@ XCIST
 */.ipynb_checkpoints
 .ipynb_checkpoints
 example_body
+pediatric_phantom_data
+Gate_data
+cfg
