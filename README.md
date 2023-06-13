@@ -1,6 +1,8 @@
 
 See important notes from Paul FitzGerald on best usage of XCIST: [XCIST Readme](/home/brandon.nelson/Dev/DLIR_Ped_Generalizability/XCAT/CatSim/examples/evaluation/ReadMe.txt)
 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/bnel1201/XCIST_demo/blob/main/experiment_01_PedXCAT/xcats_demo.ipynb)
+
 
 ## Install
 
