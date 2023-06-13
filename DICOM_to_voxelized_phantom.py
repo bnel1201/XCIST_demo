@@ -345,9 +345,10 @@ def compute_volume_fraction_array(phantom, dicom_filenames, materials_dict, volu
     for dcm_index, dicom_filename in enumerate(dicom_filenames):
         dicom_pathname = os.path.join(phantom.dicom_path, dicom_filename)
         dicom_data = pydicom.dcmread(dicom_pathname)             # Read DICOM file
+        rows, cols = dicom_data.Rows, dicom_data.Columns
         hu_array = dicom_data.pixel_array                        # Extract the data - in HU but with a "rescale intercept".
         hu_array = hu_array + int(dicom_data.RescaleIntercept)   # Add the "rescale intercept" to get it into HU.
-        volume_fraction_array['HU data'][dcm_index] = hu_array   # Store the HU data in the volume fraction array
+        volume_fraction_array['HU data'][dcm_index] = hu_array.reshape(cols, rows)   # Store the HU data in the volume fraction array
         mu_array = (hu_array + 1000) * phantom.mu_water / 1000   # Convert HU to LAC (mu)
         mu_array[mu_array < 0] = 0                               # Remove negative values (non-physical)
         bounds = copy.deepcopy(threshold_list)                   # Prevent the next line from appending to threshold_list
@@ -357,7 +358,7 @@ def compute_volume_fraction_array(phantom, dicom_filenames, materials_dict, volu
             array0[array0 < bounds[material_index]] = 0          # Zero out pixels below lower threshold
             array0[array0 >= bounds[material_index+1]] = 0       # Zero out pixels above upper threshold
             array0 /= mu_list[material_index]                    # Calculate mu fraction relative to mu for this material.
-            volume_fraction_array[material][dcm_index] = array0  # Store the mu fraction in the volume fraction array
+            volume_fraction_array[material][dcm_index] = array0.reshape(cols, rows)  # Store the mu fraction in the volume fraction array
 
     return volume_fraction_array
 
@@ -385,7 +386,7 @@ def write_files(phantom, materials_dict, volume_fraction_array):
 
 
 def write_json_file(phantom, materials_dict):
-
+    materials_dict['volume_fraction_filenames'] = list(map(lambda x: Path(x).name, materials_dict['volume_fraction_filenames']))
     json_file_contents = {
         "construction_description": 'Created by DICOM_to_voxelized_phantom.py',
         "n_materials": phantom.num_materials,
