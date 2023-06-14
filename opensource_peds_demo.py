@@ -32,9 +32,6 @@ for url in files:
         urllib.request.urlretrieve(url, fname)
 
 # %%
-!pip install --upgrade --quiet SimpleITK pandas pydicom tqdm
-
-# %%
 import zipfile
 
 import numpy as np 
@@ -195,12 +192,7 @@ with open('dicom_to_voxelized.cfg', 'w') as f:
 print(open('dicom_to_voxelized.cfg','r').read())
 
 # %%
-!git clone https://github.com/xcist/main.git XCIST
-!pip install --upgrade --quiet XCIST/
-
-# %%
-%run DICOM_to_voxelized_phantom.py dicom_to_voxelized.cfg
-
+os.system("DICOM_to_voxelized_phantom.py dicom_to_voxelized.cfg")
 # %% [markdown]
 # ## Now We Run the CT Experiment
 
