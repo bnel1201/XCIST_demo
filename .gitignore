@@ -15,3 +15,5 @@ dicom_to_voxelized.cfg
 *.json
 sitk2vtk.py
 *.pyc
+*.raw
+*.png
